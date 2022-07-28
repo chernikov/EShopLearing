@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { WeatherForecast } from '@models/weather-forecast';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherForecastComponent implements OnInit {
 
-  constructor() { }
+  obj : any;
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
+      this.http.get("/api/weatherForecast").subscribe(res => {
+        this.obj = res;
+      })
   }
 
 }
