@@ -1,1 +1,8 @@
 <p>weather-forecast works!</p>
+
+
+<div>
+    {{title.name}}
+</div>
+
+<div *ngFor="let obj of weather"> {{obj.date}} {{obj.temperatureC}} {{obj.summary}}</div>
