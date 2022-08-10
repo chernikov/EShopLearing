@@ -5,15 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherForecastComponent } from '@components/weather-forecast/weather-forecast.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserItemComponent } from './components/user-item/user-item.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherForecastComponent
+    WeatherForecastComponent,
+    UserListComponent,
+    UserItemComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

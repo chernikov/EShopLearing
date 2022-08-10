@@ -1,0 +1,20 @@
+<ul *ngIf="users">
+
+
+    <a routerLink="/users/0">Add</a>
+    <li *ngFor="let user of users">
+        <div>
+            {{user.id}}
+        </div>
+        <div>
+            {{user.name}}
+        </div>
+
+        <div>
+            <a routerLink="/users/{{user.id}}">Edit</a>
+        </div>
+        <div>
+            <button (click)="deleteUser(user.id)">Delete</button>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,12 @@
+<div *ngIf="user">
+<h1>{{user.id == 0 ? "Add" : "Edit" }} User</h1>
+    <form>
+        <div>
+            <label>
+                Name:
+            </label>
+            <input name="name" [(ngModel)]="user.name">
+        </div>
+        <button (click)="saveUser()">Save</button>
+    </form>
+</div>
