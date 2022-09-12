@@ -10,7 +10,7 @@ import { UserService } from '@services/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users : any;
+  users : User[] = [];
   constructor(private userService : UserService) { }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   } 
 
   deleteUser(id : number) {
-    this.userService.deleteUser(id).subscribe(res => {
+    this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
     });
   }
