@@ -17,8 +17,8 @@ builder.Services.AddDbContext<EShopLearningDbContext>(options =>
           );
 // Data Source=(local);Initial Catalog=EShopLearning;Integrated Security=True;Connect Timeout=30
 builder.Services.AddScoped<IEShopLearningDbContext, EShopLearningDbContext>();
-
 builder.Services.AddAutoMapper(typeof(UserProfile));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

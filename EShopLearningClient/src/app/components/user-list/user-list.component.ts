@@ -38,7 +38,7 @@ export class UserListComponent implements OnInit {
 
   saveUser(user : User | null){
     this.userService.saveUser(user).subscribe(res => {
-      this.saveUser(user);
+      this.getAllUsers();
     });
   }
 }
