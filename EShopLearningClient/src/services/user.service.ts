@@ -26,7 +26,7 @@ export class UserService {
     return this.http.delete<void>(this.apiUrl + '/' + id);
   }
   getUser(id: number) {
-    return this.http.get<User>(this.apiUrl + id);
+    return this.http.get<User>(this.apiUrl + "/" + id);
   }
 
   saveUser(user: User | null) {

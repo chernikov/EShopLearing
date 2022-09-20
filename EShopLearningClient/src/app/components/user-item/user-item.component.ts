@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '@models/user';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-user-item',
@@ -13,8 +14,8 @@ export class UserItemComponent implements OnInit {
   user : User | null = null;
   userId : number = 0;
 
-  constructor(private activatedRoute : ActivatedRoute,
-      private http : HttpClient) { }
+  constructor(private activatedRoute : ActivatedRoute, 
+    private userService : UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
@@ -25,21 +26,15 @@ export class UserItemComponent implements OnInit {
 
   getUser(id : number) : void 
   {
-    this.http.get<User>("/api/users/" + id).subscribe(res => {
+    this.userService.getUser(id).subscribe(res => {
       this.user = res;
     }, null, () => { console.log("Complete"); });
   }
 
   
   saveUser() {
-    if (this.user?.id == 0) {
-      this.http.post<User>("/api/users", this.user).subscribe(res => {
-        this.user = res;
-      });
-    } else {
-      this.http.put<User>("/api/users", this.user).subscribe(res => {
-        this.user = res;
-      });
-    }
+    this.userService.saveUser(this.user).subscribe(res => {
+      this.user = res;
+    });
   }
 }
