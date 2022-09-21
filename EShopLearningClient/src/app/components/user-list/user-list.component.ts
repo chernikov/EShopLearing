@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@models/user';
-import { UserService } from '@services/user.service';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { LoadUsers } from 'src/app/state/app.actions';
+import { AppState, getUsers } from 'src/app/state/app.state';
+
 
 @Component({
   selector: 'app-user-list',
@@ -10,36 +14,18 @@ import { UserService } from '@services/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users : User[] = [];
-  constructor(private userService : UserService) { }
+  
+  constructor(private store: Store<AppState>,
+    public users$: Observable<User[]>) { }
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.users$ = this.store.pipe(select(getUsers));
   }
 
 
   getAllUsers() : void {
-    this.userService.getAllUsers().subscribe(res => {
-      this.users = res;
-    })  
+    this.store.dispatch(new LoadUsers());
   } 
-
-  deleteUser(id : number) {
-    this.userService.deleteUser(id).subscribe(() => {
-      this.getAllUsers();
-    });
-  }
-
-  getUser(id : number){
-    this.userService.getUser(id).subscribe(res => {
-      this.users = res;
-    });
-  }
-
-  saveUser(user : User | null){
-    this.userService.saveUser(user).subscribe(res => {
-      this.getAllUsers();
-    });
-  }
 }
    

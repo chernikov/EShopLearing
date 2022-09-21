@@ -1,20 +1,13 @@
 import { User } from "@models/user";
-import { Actions, ActionTypes } from "./app.actions";
+import { AppActions, ActionTypes } from "./app.actions";
+import { AppState } from "./app.state";
 
-export interface State {
-    users : User[];
-}
-
-
-
-const initialState: State =
+const initialState: AppState =
 {
     users: []
 }
 
-
-
-export function reducer(state = initialState, action: Actions): State {
+export function AppReducer(state = initialState, action: AppActions): AppState {
     switch (action.type) {
 
         case ActionTypes.LoadUsersSuccess: {

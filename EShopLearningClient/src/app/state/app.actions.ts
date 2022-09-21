@@ -29,7 +29,7 @@ export class Error implements Action {
 }
 
 // Union the valid types
-export type Actions = 
+export type AppActions = 
     LoadUsers 
     | LoadUsersSuccess
     | Error;

@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { UserService } from '@services/user.service';
-
+import { StoreModule } from '@ngrx/store';
+import { AppReducer } from './state/app.reducer';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserService } from '@services/user.service';
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({app : AppReducer})
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -3,7 +3,9 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { UserService } from "@services/user.service";
 import { Observable } from "rxjs";
-import { ActionTypes } from "./app.actions";
+import { ActionTypes, AppActions, LoadUsersSuccess } from "./app.actions";
+
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class AppEffects {
@@ -15,8 +17,9 @@ export class AppEffects {
     loadUser$: Observable<Action> = this.actions$.pipe(
         ofType(ActionTypes.LoadUsers),
         mergeMap(action => {
-            return this.profileService.get(id).pipe(
-                map(profile => new profileActions.LoadProfileSuccess(profile))
+            return this.userService.getAllUsers().pipe(
+                map(users => new LoadUsersSuccess(users))
             );
-        }),
+        })
     );
+}
