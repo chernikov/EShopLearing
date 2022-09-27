@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@models/user';
-import { select, Store } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LoadUsers } from 'src/app/state/app.actions';
-import { AppState, getUsers } from 'src/app/state/app.state';
+import { AddNumber, LoadUsers } from 'src/app/state/app.actions';
+import { AppState, getNumber, getUsers, State } from 'src/app/state/app.selector';
 
 
 @Component({
@@ -12,20 +12,30 @@ import { AppState, getUsers } from 'src/app/state/app.state';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit 
+{
 
-  
-  constructor(private store: Store<AppState>,
-    public users$: Observable<User[]>) { }
+  public users$: Observable<User[]> | undefined;
+
+  public num$: Observable<number> | undefined;
+
+  constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.num$ = this.store.pipe(select(getNumber));
     this.users$ = this.store.pipe(select(getUsers));
   }
 
 
   getAllUsers() : void {
-    this.store.dispatch(new LoadUsers());
+    //this.store.dispatch(new LoadUsers());
   } 
+
+  addNumber() : void 
+  {
+    let addNumberAction : Action = new AddNumber(2);
+    this.store.dispatch(addNumberAction);
+  }
 }
    

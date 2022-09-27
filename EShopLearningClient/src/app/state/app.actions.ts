@@ -3,11 +3,19 @@ import { Action } from "@ngrx/store";
 
 export enum ActionTypes {
     Error = 'Error',
-    
     LoadUsers = 'Load users',
     LoadUsersSuccess = 'Load users success',
-    
+    AddNumber = 'Add Number'
 }
+
+
+
+export class AddNumber implements Action {
+    readonly type = ActionTypes.AddNumber;
+
+    constructor(public increase : number) {}
+}
+
 
 
 
