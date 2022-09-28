@@ -13,9 +13,9 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<EShopLearningDbContext>(options =>
-              options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EShopLearning;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+              options.UseSqlServer("Data Source=(local);Initial Catalog=EShopLearning;Integrated Security=True;Connect Timeout=30")
           );
-// Data Source=(local);Initial Catalog=EShopLearning;Integrated Security=True;Connect Timeout=30
+// 
 builder.Services.AddScoped<IEShopLearningDbContext, EShopLearningDbContext>();
 builder.Services.AddAutoMapper(typeof(UserProfile));
 

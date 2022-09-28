@@ -1,12 +1,14 @@
 import { User } from "@models/user";
-import { Action, ActionReducerMap } from "@ngrx/store";
-import { AppActions, ActionTypes, LoadUsersSuccess, AddNumber } from "./app.actions";
+import { Action } from "@ngrx/store";
+import { ActionTypes, LoadUsersSuccess, AddNumber } from "./app.actions";
 import { AppState } from "./app.selector";
 
 const initialState: AppState =
 {
     users: [],
-    num : 0
+    num : 0,
+    error : "no",
+    state : ""
 }
 
 export function AppReducer(state : AppState = initialState, action: Action): AppState {
@@ -14,7 +16,8 @@ export function AppReducer(state : AppState = initialState, action: Action): App
         case ActionTypes.LoadUsersSuccess: {
              return {
                  ...state,
-                 users: (action as LoadUsersSuccess).payload
+                 users: (action as LoadUsersSuccess).payload,
+                 state: "loaded"
              };
         }
         case ActionTypes.AddNumber : {
@@ -23,6 +26,12 @@ export function AppReducer(state : AppState = initialState, action: Action): App
                 num: state.num + (action as AddNumber).increase
             };
         }
+        case ActionTypes.LoadUsers : {
+            return {
+                ...state,
+                state : "loading..."
+            }
+       }
 
         default:
             return state;

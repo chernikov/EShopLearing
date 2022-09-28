@@ -15,9 +15,9 @@
         <div>
             <a routerLink="/users/{{user.id}}">Edit</a>
         </div>
-        <!-- <div>
+        <div>
             <button (click)="deleteUser(user.id)">Delete</button>
-        </div> -->
+        </div>
     </li>
 </ul>
 
@@ -27,3 +27,8 @@
 <app-counter></app-counter>
 
 <app-counter2 [num]="num$ | async"></app-counter2>
+
+
+<div>
+    {{ appState$ | async | json }}
+</div>

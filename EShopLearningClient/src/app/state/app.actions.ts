@@ -8,15 +8,11 @@ export enum ActionTypes {
     AddNumber = 'Add Number'
 }
 
-
-
 export class AddNumber implements Action {
     readonly type = ActionTypes.AddNumber;
 
     constructor(public increase : number) {}
 }
-
-
 
 
 export class LoadUsers implements Action {

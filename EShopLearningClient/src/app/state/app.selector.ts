@@ -8,11 +8,13 @@ export interface State {
 export interface AppState {
     users : User[];
     num : number;
+    error : 'no' | "yes";
+    state : "loading..." | "loaded" | "";
 }
 
 
 
-const getState = createFeatureSelector<AppState>('app');
+export const getState = createFeatureSelector<AppState>('app');
 
 export const getUsers = createSelector(
     getState,
@@ -25,6 +27,15 @@ export const getNumber = createSelector(
         return state.num;
     }
 )
+
+
+export const getError = createSelector(
+    getState, 
+    state => {
+        return state.error;
+    }
+)
+
 
 
 
