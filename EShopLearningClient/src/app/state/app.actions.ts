@@ -27,7 +27,7 @@ export class LoadUsersSuccess implements Action {
 }
 
 
-export class Error implements Action {
+export class ErrorAction implements Action {
     readonly type = ActionTypes.Error;
     constructor(public payload : string) { }
 }

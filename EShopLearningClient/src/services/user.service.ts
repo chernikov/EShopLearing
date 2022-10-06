@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '@models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,18 +19,18 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getAllUsers() {
+  getAllUsers() : Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: number) : Observable<void> {
     return this.http.delete<void>(this.apiUrl + '/' + id);
   }
-  getUser(id: number) {
+  getUser(id: number) : Observable<User> {
     return this.http.get<User>(this.apiUrl + "/" + id);
   }
 
-  saveUser(user: User | null) {
+  saveUser(user: User | null) : Observable<User> {
     if (user?.id == 0) {
       return this.http.post<User>(this.apiUrl, user);
     } else {
