@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Action, Store } from '@ngrx/store';
 import { from, Observable, of, Subject } from 'rxjs';
 import { delay, map, tap } from 'rxjs/operators';
+import { ActionTypes, LoadUsers } from './state/app.actions';
+import { State } from './state/app.selector';
 
 interface IUser {
   name: string;
@@ -34,16 +37,24 @@ export class AppComponent {
 
   subject = new Subject<IUser>();
 
-  constructor() { 
+  constructor(private store: Store<State>) { 
     this.source$ = this.subject.pipe();
     
     this.mapper$ = this.source$.pipe(map(({ name }) => name));
   }
 
   onClick() {
-    let item = this.base[this.counter];
+    this.store.dispatch(new LoadUsers());
+   /* let item = this.base[this.counter];
     this.subject.next(item);
-    this.counter++;
+    this.counter++;*/
+  }
+
+  onClick2(str:string) {
+    let action = {type : str} as Action;
+
+    console.log(str);
+    this.store.dispatch(action);
   }
 
   

@@ -1,3 +1,4 @@
+<app-error-message></app-error-message>
 {{source$ | async | json }}
 
 <br>
@@ -12,3 +13,12 @@
 <a routerLink="/users">Users</a>
 
 <router-outlet></router-outlet> -->
+
+<br>
+<button (click)="onClick2('ONE')">One</button>
+
+<br>
+<button (click)="onClick2('TWO')">Two</button>
+<br>
+
+<button (click)="onClick2('THREE')">Three</button>

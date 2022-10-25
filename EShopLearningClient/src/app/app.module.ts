@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './state/app.effects';
 import { CounterComponent } from './components/counter/counter.component';
 import { Counter2Component } from './components/counter2/counter2.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 
 
@@ -26,7 +27,8 @@ import { Counter2Component } from './components/counter2/counter2.component';
     UserListComponent,
     UserItemComponent,
     CounterComponent,
-    Counter2Component
+    Counter2Component,
+    ErrorMessageComponent
   ],
   imports: [
     HttpClientModule,

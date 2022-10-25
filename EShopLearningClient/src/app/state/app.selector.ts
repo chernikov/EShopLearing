@@ -10,6 +10,7 @@ export interface AppState {
     num : number;
     error : 'no' | "yes";
     state : "loading..." | "loaded" | "";
+    errorMessage : string;
 }
 
 
@@ -33,6 +34,14 @@ export const getError = createSelector(
     getState, 
     state => {
         return state.error;
+    }
+)
+
+
+export const getErrorMessage = createSelector(
+    getState, 
+    state => {
+        return state.errorMessage;
     }
 )
 
