@@ -8,8 +8,8 @@ export interface State {
 export interface AppState {
     users : User[];
     num : number;
-    error : 'no' | "yes";
     state : "loading..." | "loaded" | "";
+    error : 'no' | "yes";
     errorMessage : string;
 }
 
