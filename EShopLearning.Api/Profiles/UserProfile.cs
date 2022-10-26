@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using EShopLearning.Api.Dto;
-using EShopLearning.Api.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EShopLearning.Model.Entities;
 
 namespace EShopLearning.Api.Profiles
 {

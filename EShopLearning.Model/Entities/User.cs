@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EShopLearning.Api.Entities
+namespace EShopLearning.Model.Entities
 {
     public class User
     {

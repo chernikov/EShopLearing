@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using EShopLearning.Api.Dto;
-using EShopLearning.Api.Entities;
+using EShopLearning.Model;
+using EShopLearning.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EShopLearning.Api.Controllers
 {

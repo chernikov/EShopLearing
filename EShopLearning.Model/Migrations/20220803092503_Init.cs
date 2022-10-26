@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace EShopLearning.Api.Migrations
+namespace EShopLearning.Model.Migrations
 {
     public partial class Init : Migration
     {

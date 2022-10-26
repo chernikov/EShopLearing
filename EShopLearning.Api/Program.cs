@@ -1,11 +1,10 @@
 using EShopLearning.Api;
 using EShopLearning.Api.Profiles;
+using EShopLearning.Model;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Console.WriteLine(args);
-var connectionName = args.Length > 0 ? args[0] : "Default"; 
 // Add services to the container.
 
 
@@ -15,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-var connectionString = builder.Configuration.GetConnectionString(connectionName);
+var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<EShopLearningDbContext>(options =>
               options.UseSqlServer(connectionString)
           );

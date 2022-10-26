@@ -1,7 +1,7 @@
-﻿using EShopLearning.Api.Entities;
+﻿using EShopLearning.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EShopLearning.Api
+namespace EShopLearning.Model
 {
     public interface IEShopLearningDbContext
     {
