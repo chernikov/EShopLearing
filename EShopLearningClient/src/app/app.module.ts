@@ -17,6 +17,7 @@ import { AppEffects } from './state/app.effects';
 import { CounterComponent } from './components/counter/counter.component';
 import { Counter2Component } from './components/counter2/counter2.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -28,7 +29,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     UserItemComponent,
     CounterComponent,
     Counter2Component,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

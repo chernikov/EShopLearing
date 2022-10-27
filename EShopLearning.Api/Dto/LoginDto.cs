@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EShopLearning.Model.Entities
+namespace EShopLearning.Api.Dto
 {
-    public class User
+    public class LoginDto
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Password { get; set; }
