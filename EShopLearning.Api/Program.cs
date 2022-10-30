@@ -39,6 +39,9 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Configuration.AddJsonFile("appsettings.json", false, true);
+builder.Configuration.AddJsonFile($"appsettings.{Environment.MachineName}.json", true, true);
+
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<EShopLearningDbContext>(options =>
               options.UseSqlServer(connectionString)
