@@ -16,8 +16,9 @@ export class UserItemComponent implements OnInit {
   user : User | null = null;
   userId : number = 0;
 
-  constructor(private activatedRoute : ActivatedRoute, 
-    private userService : UserService, private store : Store) { }
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private store : Store) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
@@ -26,13 +27,13 @@ export class UserItemComponent implements OnInit {
     })
   }
 
-  getUser(id: number) {
+  getUser(id: number) : void {
     this.store.dispatch(new GetUserAction(id));
   }
 
   saveUser() { 
     let payload = {
-      id: this.user?.name,
+      id: this.user?.id,
       name: this.user?.name
     };
     this.store.dispatch(new SaveUserAction(payload));

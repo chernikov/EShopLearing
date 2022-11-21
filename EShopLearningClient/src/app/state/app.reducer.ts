@@ -1,6 +1,6 @@
 import { User } from "@models/user";
 import { Action } from "@ngrx/store";
-import { ActionTypes, LoadUsersSuccess, AddNumber, ErrorAction } from "./app.actions";
+import { ActionTypes, LoadUsersSuccess, AddNumber, ErrorAction, DeleteUserSuccess, DeleteUser } from "./app.actions";
 import { AppState } from "./app.selector";
 
 const initialState: AppState =
@@ -74,7 +74,8 @@ export function AppReducer(state : AppState = initialState, action: Action): App
             
         case ActionTypes.DeleteUser: { 
             return {
-                ...state,                
+                ...state,
+                users: state.users.filter(user => user.id !== (action as DeleteUser).userId),
             }
         }
             
@@ -82,8 +83,15 @@ export function AppReducer(state : AppState = initialState, action: Action): App
             return {
                 ...state,
                 error: "yes",
+                users: (action as LoadUsersSuccess).payload,
             }
-        }    
+        } 
+        
+        case ActionTypes.GetUserAction: { 
+            return {
+                ...state,
+            }
+        }  
         
 
         default:

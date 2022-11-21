@@ -14,7 +14,9 @@ export enum ActionTypes {
     DeleteUserSuccess = "Delete user success",
     DeleteUserFailure = "Deete user failure",
     SaveUserAction = "Save User",
-    GetUserAction = "Get User"
+    SaveUserSuccess = "Save user success",
+    GetUserAction = "Get User",
+    GetUserSuccess = "Get user success"
 
 }
 
@@ -58,7 +60,7 @@ export class LoginFailure implements Action {
 }
 
 export class DeleteUser implements Action {
-    readonly type = ActionTypes.LoginFailure;
+    readonly type = ActionTypes.DeleteUser;
     constructor(public userId : number) { }
 }
 
@@ -68,7 +70,7 @@ export class DeleteUserSuccess implements Action {
 }
 
 export class DeleteUserFailure implements Action {
-    readonly type = ActionTypes.DeleteUserSuccess;
+    readonly type = ActionTypes.DeleteUserFailure;
     constructor(public error : string) { }
 }
 
@@ -77,9 +79,19 @@ export class SaveUserAction implements Action {
     constructor(public user : any) { }
 }
 
+export class SaveUserSuccess implements Action { 
+    readonly type = ActionTypes.SaveUserSuccess;
+    constructor() { }
+}
+
 export class GetUserAction implements Action { 
     readonly type = ActionTypes.GetUserAction;
     constructor(public userId: number) { }
+}
+
+export class GetUserSuccess implements Action { 
+    readonly type = ActionTypes.GetUserAction;
+    constructor(public user: User) { }
 }
 // Union the valid types
 export type AppActions = 
@@ -92,5 +104,8 @@ export type AppActions =
     | DeleteUser
     | DeleteUserSuccess
     | DeleteUserFailure
-    | GetUserAction;
+    | SaveUserAction
+    | SaveUserSuccess
+    | GetUserAction
+    | GetUserSuccess;
   

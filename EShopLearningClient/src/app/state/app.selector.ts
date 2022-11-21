@@ -67,6 +67,11 @@ export const getLoginFailure = createSelector(
     }
 )
 
-
+export const getUser = createSelector(
+    getState,
+    state => { 
+        return state.users;
+    }
+)
 
 

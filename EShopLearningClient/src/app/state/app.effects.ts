@@ -3,7 +3,7 @@ import { act, Actions, Effect, ofType } from "@ngrx/effects";
 import { Action, ActionsSubject } from "@ngrx/store";
 import { UserService } from "@services/user.service";
 import { from, Observable, of } from "rxjs";
-import { ActionTypes, AppActions, DeleteUser, DeleteUserFailure, DeleteUserSuccess, ErrorAction, GetUserAction, LoadUsersSuccess, LoginAction, LoginFailure, LoginSuccess, SaveUserAction } from "./app.actions";
+import { ActionTypes, AppActions, DeleteUser, DeleteUserFailure, DeleteUserSuccess, ErrorAction, GetUserAction, GetUserSuccess, LoadUsersSuccess, LoginAction, LoginFailure, LoginSuccess, SaveUserAction, SaveUserSuccess } from "./app.actions";
 
 import { catchError, exhaust, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from "@angular/common/http";
@@ -87,15 +87,46 @@ export class AppEffects {
     loginFailure$: Observable<Action> = this.actions$.pipe(
         ofType(ActionTypes.LoginFailure),
         tap(() => this.router.navigate(["/login"]))
-    );
-
-   
+    );   
 
     @Effect()
-    getUser$: Observable<User> = this.actions$.pipe(
+    getUserById$: Observable<Action> = this.actions$.pipe(
         ofType(ActionTypes.GetUserAction),
-        switchMap((action: GetUserAction) => { 
-            return this.userService.getUser(action.userId);
+        mergeMap((action: GetUserAction) => { 
+            let userId = action.userId;
+            console.log("Hello from getUserById: " + userId);
+            
+            return this.userService.getUser(userId);
+        }),
+        map((data) => { 
+            console.log("Hi from MAP: " + data.id);
+            const respUser = {
+                id: data.id,
+                name: data.name
+            };
+            return new GetUserSuccess(respUser);
+        }),
+        catchError(error => { 
+            return of(new ErrorAction(error.message));
+        }),
+    );  
+
+    @Effect()
+    saveUser$: Observable<Action> = this.actions$.pipe(
+        ofType(ActionTypes.SaveUserAction),
+        switchMap((saveUserAction: SaveUserAction) => { 
+            const user = {
+                id: saveUserAction.user.id,
+                name: saveUserAction.user.name,
+            };
+            return this.userService.saveUser(user);
+        }),
+        map(() => { 
+            this.router.navigate(["/users"]);
+            return new SaveUserSuccess();
+        }),
+        catchError(error => { 
+            return of(new ErrorAction(error.message));
         }),
     );
 }
