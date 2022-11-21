@@ -1,6 +1,6 @@
 import { User } from "@models/user";
 import { Action } from "@ngrx/store";
-import { ActionTypes, LoadUsersSuccess, AddNumber, ErrorAction, DeleteUserSuccess, DeleteUser } from "./app.actions";
+import { ActionTypes, LoadUsersSuccess, AddNumber, ErrorAction, DeleteUser, GetUserSuccess } from "./app.actions";
 import { AppState } from "./app.selector";
 
 const initialState: AppState =
@@ -91,7 +91,14 @@ export function AppReducer(state : AppState = initialState, action: Action): App
             return {
                 ...state,
             }
-        }  
+        } 
+        
+        case ActionTypes.GetUserSuccess: { 
+            return {
+                ...state,
+                users: state.users.filter(user => user.id == (action as GetUserSuccess).user.id),
+            }
+        }
         
 
         default:
