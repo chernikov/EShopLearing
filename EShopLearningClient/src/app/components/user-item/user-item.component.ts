@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '@models/user';
+import { Store } from '@ngrx/store';
 import { UserService } from '@services/user.service';
+import { GetUserAction, SaveUserAction } from 'src/app/state/app.actions';
 
 @Component({
   selector: 'app-user-item',
@@ -15,7 +17,7 @@ export class UserItemComponent implements OnInit {
   userId : number = 0;
 
   constructor(private activatedRoute : ActivatedRoute, 
-    private userService : UserService) { }
+    private userService : UserService, private store : Store) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
@@ -24,17 +26,16 @@ export class UserItemComponent implements OnInit {
     })
   }
 
-  getUser(id : number) : void 
-  {
-    this.userService.getUser(id).subscribe(res => {
-      this.user = res;
-    }, null, () => { console.log("Complete"); });
+  getUser(id: number) {
+    this.store.dispatch(new GetUserAction(id));
   }
 
-  
-  saveUser() {
-    this.userService.saveUser(this.user).subscribe(res => {
-      this.user = res;
-    });
+  saveUser() { 
+    let payload = {
+      id: this.user?.name,
+      name: this.user?.name
+    };
+    this.store.dispatch(new SaveUserAction(payload));
   }
+ 
 }

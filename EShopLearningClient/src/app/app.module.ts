@@ -18,6 +18,8 @@ import { CounterComponent } from './components/counter/counter.component';
 import { Counter2Component } from './components/counter2/counter2.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { LoginComponent } from './components/login/login.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginService } from '@services/login.service';
 
 
 
@@ -30,20 +32,22 @@ import { LoginComponent } from './components/login/login.component';
     CounterComponent,
     Counter2Component,
     ErrorMessageComponent,
-    LoginComponent
+    LoginComponent,
+    LandingComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    EffectsModule.forRoot([AppEffects]),
     StoreModule.forRoot({app : AppReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25 // Retains last 25 states
     }),
     EffectsModule.forRoot([AppEffects])
   ],
-  providers: [UserService],
+  providers: [UserService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

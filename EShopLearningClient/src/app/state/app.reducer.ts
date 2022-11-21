@@ -9,7 +9,8 @@ const initialState: AppState =
     num : 0,
     error : "no",
     state : "",
-    errorMessage : ""
+    errorMessage: "",
+    isAuthenticated: null,
 }
 
 export function AppReducer(state : AppState = initialState, action: Action): AppState {
@@ -45,6 +46,45 @@ export function AppReducer(state : AppState = initialState, action: Action): App
                 state: ""
             }
         }
+        
+        case ActionTypes.LoginAction: { 
+            return {
+                ...state,
+                error: "no",
+                isAuthenticated: false,
+            }
+        }
+        
+        case ActionTypes.LoginSuccess: { 
+            return {
+                ...state,
+                error: "no",
+                isAuthenticated: true,
+            }
+        }
+            
+        case ActionTypes.LoginFailure: { 
+            return {
+                ...state,
+                error: "yes",
+                isAuthenticated: false,
+                errorMessage : (action as ErrorAction).payload,
+            }
+        }
+            
+        case ActionTypes.DeleteUser: { 
+            return {
+                ...state,                
+            }
+        }
+            
+        case ActionTypes.DeleteUserFailure: { 
+            return {
+                ...state,
+                error: "yes",
+            }
+        }    
+        
 
         default:
             return state;

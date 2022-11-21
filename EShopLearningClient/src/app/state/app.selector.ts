@@ -10,7 +10,8 @@ export interface AppState {
     num : number;
     state : "loading..." | "loaded" | "";
     error : 'no' | "yes";
-    errorMessage : string;
+    errorMessage: string;
+    isAuthenticated: boolean | null;
 }
 
 
@@ -41,6 +42,27 @@ export const getError = createSelector(
 export const getErrorMessage = createSelector(
     getState, 
     state => {
+        return state.errorMessage;
+    }
+)
+
+export const getLogin = createSelector(
+    getState,
+    state => { 
+        return state.isAuthenticated;
+    }
+)
+
+export const getLoginSuccess = createSelector(
+    getState,
+    state => { 
+        return state.isAuthenticated;
+    }
+)
+
+export const getLoginFailure = createSelector(
+    getState,
+    state => { 
         return state.errorMessage;
     }
 )

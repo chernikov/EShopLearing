@@ -1,34 +1,33 @@
-
 <h1>{{ num$ | async }}</h1>
 <ul *ngIf="users$">
+  <a routerLink="/users/0">Add</a>
+  <li *ngFor="let user of users$ | async">
+    <div>
+      {{ user.id }}
+    </div>
+    <div>
+      {{ user.name }}
+    </div>
 
-
-    <a routerLink="/users/0">Add</a>
-    <li *ngFor="let user of users$ | async">
-        <div>
-            {{user.id}}
-        </div>
-        <div>
-            {{user.name}}
-        </div>
-
-        <div>
-            <a routerLink="/users/{{user.id}}">Edit</a>
-        </div>
-        <div>
-            <button (click)="deleteUser(user.id)">Delete</button>
-        </div>
-    </li>
+    <div>
+      <a routerLink="/users/{{ user.id }}">Edit</a>
+    </div>
+    <div>
+      <button (click)="deleteUser(user.id)">Delete</button>
+    </div>
+  </li>
 </ul>
 
 <button (click)="addNumber()">Add Number</button>
-
 
 <app-counter></app-counter>
 
 <app-counter2 [num]="num$ | async"></app-counter2>
 
+<div>
+  {{ error$ | async | json }}
+</div>
 
 <div>
-    {{ appState$ | async | json }}
+  {{ errorMessage$ | async | json }}
 </div>
