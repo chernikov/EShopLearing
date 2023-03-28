@@ -15,48 +15,23 @@ interface IUser {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  base: IUser[] = [
-    {
-      name: 'Parwinder',
-      character: 'Calcifer',
-    },
-    {
-      name: 'Laure',
-      character: 'Alchemist',
-    },
-    {
-      name: 'Eliu',
-      character: 'X-Men',
-    }];
-
-  counter : number = 0;
-
-  source$: Observable<IUser> | null = null;
-
-  mapper$: Observable<string> | null = null;
-
-  subject = new Subject<IUser>();
-
-  constructor(private store: Store<State>) { 
-    this.source$ = this.subject.pipe();
-    
-    this.mapper$ = this.source$.pipe(map(({ name }) => name));
-  }
-
-  onClick() {
-    this.store.dispatch(new LoadUsers());
-   /* let item = this.base[this.counter];
-    this.subject.next(item);
-    this.counter++;*/
-  }
-
-  onClick2(str:string) {
-    let action = {type : str} as Action;
-
-    console.log(str);
-    this.store.dispatch(action);
-  }
-
   
   title = 'EShopLearningClient';
+
+  item = "";
+  savedItem : string | null = "";
+  constructor() { 
+  }
+
+  onRead() {
+    this.savedItem = localStorage.getItem("eshop_test");
+  }
+
+  onSave() {
+    localStorage.setItem("eshop_test", this.item);
+  }
+
+
+  
+  
 }

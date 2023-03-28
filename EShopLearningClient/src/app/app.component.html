@@ -1,29 +1,15 @@
-<!--
-<app-error-message></app-error-message>
-{{source$ | async | json }}
-
-<br>
-{{ mapper$ | async | json }}
-
-<br>
-<button (click)="onClick()">CLICK</button>
--->
-<!-- 
-<a routerLink="/weather-forecast">Weather</a>
-
-&nbsp;
-<a routerLink="/users">Users</a>
--->
-
 <router-outlet></router-outlet>
-<!--
-<br>
-<button (click)="onClick2('ONE')">One</button>
+
+
 
 <br>
-<button (click)="onClick2('TWO')">Two</button>
-<br>
 
-<button (click)="onClick2('THREE')">Three</button>
+<br><br><br><br>
 
--->
+
+<input [(ngModel)]="item" />
+<br/>
+{{savedItem}}
+<button (click)="onSave()">Save</button>
+<button (click)="onRead()">Read</button>
+

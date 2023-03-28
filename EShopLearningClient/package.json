@@ -1,6 +1,6 @@
 {
   "name": "eshop-learning-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.18",
+    "@angular/cli": "~12.2.18",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
