@@ -7,14 +7,14 @@ export interface IButtonProps {
 
 export const Button = (props : IButtonProps) => {
 
-    const anyEvent = (value : any) => {
-        props.onClick();
-    }
+   // const anyEvent = (value : any) => {
+   //     props.onClick();
+   // }
 
     return (
         <>
             <div style={{"marginBottom" : "120px"}}>
-            <input type="button" value={props.value} onClick={anyEvent}/>
+            <input type="button" value={props.value} onClick={props.onClick}/>
             </div>
         </>
     );
