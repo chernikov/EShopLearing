@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {StringOrNull} from "@types";
+import {StringOrNull} from "../types";
 
 export const useGreeting = () => {
   const [name, setName] = useState<StringOrNull>("");

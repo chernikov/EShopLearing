@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import { Button, Header, TextField } from './components';
 import {useGreeting } from "./hooks";
 import {StringOrNull} from "./types";
@@ -33,10 +32,10 @@ const App = () => {
     <>
       <div style={{ "padding": "20px" }}>
         {name && <Header header={headerValue} name={name} />}
-        {name ?? <>
+        {name || <div>
           <TextField label={"What is your name?"} onChange={onChangeName}/>
           <Button value={"Ok"} onClick={onBtnClick} />
-        </>}
+        </div>}
       </div>
       <div className="App">
         <header className="App-header">

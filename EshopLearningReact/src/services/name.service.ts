@@ -1,4 +1,5 @@
 import axios from "axios";
+import {BaseApi } from "./baseapi";
 
 export class NameService extends BaseApi {
 
